@@ -21,11 +21,11 @@ var (
 // Let's start with some sensible defaults
 var Cnf = &Config{
 	Database: DatabaseConfig{
-		Type:         "postgres",
-		Host:         "localhost",
-		Port:         5432,
-		User:         "go_oauth2_server",
-		Password:     "",
+		Type:         "percona",
+		Host:         "pg",
+		Port:         3306,
+		User:         "taxi",
+		Password:     "111000",
 		DatabaseName: "go_oauth2_server",
 		MaxIdleConns: 5,
 		MaxOpenConns: 5,

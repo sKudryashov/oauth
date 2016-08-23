@@ -1,18 +1,31 @@
 version: '2'
 services:
   oauth2-server:
+#    networks:
+#      - oauth_go
     build:
       context: ../
       dockerfile: ./docker-compose/Dockerfile
     depends_on:
-      - pg
+#      - pg
       - etcd
     links:
-      - pg
-      - etcd
+#      - pg:db
+      - etcd:etcd
     ports:
       - "8080:8080"
-  pg:
-    image: "postgres"
+    volumes:
+      - ../go-oauth2-server/src:/go/src/github.com/RichardKnop/go-oauth2-server
+#  pg:
+#    image: "percona:latest"
+#    environment:
+#        - MYSQL_ROOT_PASSWORD=000999
+#        - MYSQL_DATABASE=taxi
+#        - MYSQL_USER=taxi
+#        - MYSQL_PASSWORD=111000
+#    volumes:
+#      - ./data:/var/lib/mysql
+#    ports:
+#      - "3308:3306"
   etcd:
     image: "elcolio/etcd"

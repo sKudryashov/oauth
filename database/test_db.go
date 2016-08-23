@@ -84,6 +84,21 @@ func rebuildDatabasePostgres(dbUser, dbName string) (*gorm.DB, error) {
 	return openPostgresDB(dbUser, dbName)
 }
 
+func openPerconaDB(dbUser, dbName string) (*gorm.DB, error) {
+	// Init a new postgres test database connection
+	db, err := gorm.Open("percona",
+		fmt.Sprintf(
+			"sslmode=disable host=localhost port=3306 user=%s password='' dbname=%s",
+			dbUser,
+			dbName,
+		),
+	)
+	if err != nil {
+		return nil, err
+	}
+	return db, nil
+}
+
 func openPostgresDB(dbUser, dbName string) (*gorm.DB, error) {
 	// Init a new postgres test database connection
 	db, err := gorm.Open("postgres",

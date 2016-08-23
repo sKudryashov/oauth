@@ -4,7 +4,7 @@ FROM golang
 
 # Install pg client to init db
 RUN apt-get update
-RUN apt-get install -y postgresql-client-9.4
+RUN apt-get install -y postgresql-client-9.4 nmap
 
 ADD . /go/src/github.com/RichardKnop/go-oauth2-server
 
@@ -18,6 +18,8 @@ RUN go install github.com/RichardKnop/go-oauth2-server
 
 # Copy the docker-entrypoint.sh script and use it as entrypoint
 COPY ./docker-compose/docker-entrypoint.sh /
+RUN chmod a+wx /docker-entrypoint.sh
+
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 # Document that the service listens on port 8080.

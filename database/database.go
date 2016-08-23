@@ -8,6 +8,7 @@ import (
 	"github.com/jinzhu/gorm"
 	// Drivers
 	_ "github.com/lib/pq"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func init() {
@@ -31,6 +32,38 @@ func NewDatabase(cnf *config.Config) (*gorm.DB, error) {
 			cnf.Database.Password,
 			cnf.Database.DatabaseName,
 		)
+
+		db, err := gorm.Open(cnf.Database.Type, args)
+		if err != nil {
+			return db, err
+		}
+
+		// Max idle connections
+		db.DB().SetMaxIdleConns(cnf.Database.MaxIdleConns)
+
+		// Max open connections
+		db.DB().SetMaxOpenConns(cnf.Database.MaxOpenConns)
+
+		// Database logging
+		db.LogMode(cnf.IsDevelopment)
+
+		return db, nil
+	}
+
+	if cnf.Database.Type == "mysql" {
+		// Connection args
+		// see https://godoc.org/github.com/lib/pq#hdr-Connection_String_Parameters
+		//mysql://john:pass@localhost:port/my_db
+		//args := fmt.Sprintf(
+		//		"mysql://%s:%s@%s:%s/%s",
+		//	        cnf.Database.User,
+		//		cnf.Database.Password,
+		//		cnf.Database.Host,
+		//		3306,
+		//		cnf.Database.DatabaseName,
+		//	)
+
+		args := "taxi:111000@tcp(db:3306)/taxi"
 
 		db, err := gorm.Open(cnf.Database.Type, args)
 		if err != nil {

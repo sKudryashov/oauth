@@ -130,6 +130,11 @@
 			"Rev": "1efa31f08b9333f1bd4882d61f9d668a70cd902e"
 		},
 		{
+			"ImportPath": "github.com/go-sql-driver/mysql",
+			"Comment": "v1.2-196-g3654d25",
+			"Rev": "3654d25ec346ee8ce71a68431025458d52a38ac0"
+		},
+		{
 			"ImportPath": "github.com/urfave/negroni",
 			"Comment": "v0.2.0-48-gdcaac91",
 			"Rev": "dcaac9107a7a6ba4cf5143afc145e2b70a1c12c2"

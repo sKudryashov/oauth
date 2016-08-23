@@ -243,8 +243,8 @@ func DialOpen(d Dialer, name string) (_ driver.Conn, err error) {
 	// * Very low precedence defaults applied in every situation
 	// * Environment variables
 	// * Explicitly passed connection information
-	o.Set("host", "localhost")
-	o.Set("port", "5432")
+	o.Set("host", "db")
+	o.Set("port", "3306")
 	// N.B.: Extra float digits should be set to 3, but that breaks
 	// Postgres 8.4 and older, where the max is 2.
 	o.Set("extra_float_digits", "2")

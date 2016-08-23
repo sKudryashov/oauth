@@ -1,0 +1,31 @@
+# Autodetect text files
+* text=auto
+
+# Force the following filetypes to have unix eols, so Windows does not break them
+*.* text eol=lf
+console test eol=lf
+
+# All binary files shouldn't be modified
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.mov binary
+*.mp4 binary
+*.mp3 binary
+*.flv binary
+*.fla binary
+*.swf binary
+*.gz binary
+*.zip binary
+*.rar binary
+*.7z binary
+*.ttf binary
+*.exe binary
+*.jar binary
+*.pdf binary
+*.cab binary
+*.doc binary
+*.eot binary
+*.woff2 binary
